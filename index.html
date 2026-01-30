@@ -7,6 +7,8 @@
 
 <link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
@@ -15,6 +17,7 @@
   --accent:#2563eb;
   --bg:#f8fafc;
   --border:#e2e8f0;
+  --whatsapp:#25D366;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -59,6 +62,11 @@ nav{
   text-decoration:none;
   color:var(--secondary);
   font-weight:500;
+  transition:color 0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--accent);
 }
 
 /* DROPDOWN */
@@ -75,6 +83,7 @@ nav{
   opacity:0;
   visibility:hidden;
   transition:.25s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
 .dropdown:hover .dropdown-menu{
@@ -99,54 +108,141 @@ nav{
   cursor:pointer;
 }
 
-/* HERO VIDEO */
-.hero{
-  height:90vh;
-  margin-top:75px;
-  position:relative;
-  overflow:hidden;
+/* CARRUSEL AL INICIO */
+.carousel-section {
+  margin-top: 75px;
+  height: 85vh;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-video{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:translate(-50%,-50%);
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(15,23,42,.6),rgba(15,23,42,.35));
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  padding:2rem;
-  z-index:1;
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero h1{
-  font-size:2.3rem;
-  margin-bottom:1rem;
+.carousel-slide.active {
+  opacity: 1;
 }
 
-.hero p{
-  opacity:.9;
-  margin-bottom:2rem;
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.hero-btn{
-  background:white;
-  color:var(--primary);
-  padding:.8rem 1.6rem;
-  border-radius:4px;
-  font-weight:600;
-  text-decoration:none;
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.carousel-content {
+  max-width: 800px;
+  z-index: 2;
+}
+
+.carousel-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.carousel-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.carousel-btn {
+  background: white;
+  color: var(--primary);
+  padding: 0.9rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel-dot.active {
+  background: white;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 10;
+}
+
+.carousel-nav:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.carousel-nav.prev {
+  left: 2rem;
+}
+
+.carousel-nav.next {
+  right: 2rem;
 }
 
 /* FEATURES */
@@ -173,43 +269,85 @@ nav{
   padding:2rem;
   border-radius:6px;
   border:1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* CAROUSEL */
-.carousel{
-  position:relative;
-  height:55vh;
-  overflow:hidden;
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.carousel img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 1s;
+/* SECCIÓN DE CONTACTO */
+.contact-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
 }
 
-.carousel img.active{opacity:1}
-
-/* CONTACT BOX */
-.contact-box{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:1.8rem 2.2rem;
-  border-radius:8px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.2);
+.contact-container {
+  background: white;
+  border-radius: 10px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+  text-align: center;
 }
 
-.contact-box h3{margin-bottom:.4rem}
-.contact-box p{
-  font-weight:600;
-  color:var(--accent);
+.contact-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.contact-subtitle {
+  color: var(--secondary);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-phone {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-phone i {
+  color: var(--primary);
+}
+
+.whatsapp-btn {
+  background: var(--whatsapp);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+  background: #1da851;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn i {
+  font-size: 1.3rem;
 }
 
 /* FOOTER */
@@ -218,13 +356,15 @@ footer{
   padding:2rem;
   font-size:.85rem;
   color:var(--secondary);
+  background: var(--primary);
+  color: white;
+  margin-top: 3rem;
 }
 
 /* RESPONSIVE */
 @media(max-width:900px){
-
   .menu-btn{display:block}
-
+  
   .nav-links{
     position:absolute;
     top:70px;
@@ -236,6 +376,7 @@ footer{
     border:1px solid var(--border);
     padding:1rem;
     display:none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
 
   .nav-links.show{display:flex}
@@ -246,17 +387,63 @@ footer{
     visibility:visible;
     border:none;
     padding-left:1rem;
+    box-shadow: none;
   }
-
-  .hero{
-    height:70vh;
+  
+  .carousel-section {
+    height: 70vh;
   }
+  
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
+  
+  .carousel-content p {
+    font-size: 1rem;
+  }
+  
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .carousel-nav.prev {
+    left: 1rem;
+  }
+  
+  .carousel-nav.next {
+    right: 1rem;
+  }
+  
+  .contact-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contact-title {
+    font-size: 1.7rem;
+  }
+  
+  .contact-phone {
+    font-size: 1.3rem;
+  }
+}
 
-  .hero h1{font-size:1.8rem}
-  .hero p{font-size:1rem}
-
-  .contact-box{
-    width:85%;
+@media(max-width: 600px) {
+  .carousel-section {
+    height: 60vh;
+  }
+  
+  .carousel-content h1 {
+    font-size: 1.7rem;
+  }
+  
+  .carousel-content p {
+    font-size: 0.95rem;
+  }
+  
+  .carousel-nav {
+    display: none;
   }
 }
 </style>
@@ -283,36 +470,79 @@ footer{
 </nav>
 </header>
 
-<section class="hero" id="inicio">
-
-
-  <div class="hero-overlay">
-    <div>
-      <h1>Odontología digital con precisión clínica</h1>
-      <p>Soluciones CAD/CAM para clínicas modernas</p>
-      <a class="hero-btn" href="#">Explorar soluciones</a>
+<!-- CARRUSEL AL INICIO -->
+<section class="carousel-section" id="inicio">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide active">
+      <img src="Imagenes/Productos/Escaneres/pruebas (3).webp" alt="Escáner dental de alta precisión">
+      <div class="carousel-overlay">
+        <div class="carousel-content">
+          <h1>Odontología digital con precisión clínica</h1>
+          <p>Soluciones CAD/CAM para clínicas modernas</p>
+          <a class="carousel-btn" href="#productos">Explorar soluciones</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <img src="Imagenes/Productos/Escaneres/pruebas (6).webp" alt="Fresadora dental">
+      <div class="carousel-overlay">
+        <div class="carousel-content">
+          <h1>Tecnología de fresado avanzada</h1>
+          <p>Producción exacta de prótesis y restauraciones</p>
+          <a class="carousel-btn" href="#productos">Ver equipos</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <img src="Imagenes/Productos/Escaneres/pruebas (11).webp" alt="Software dental especializado">
+      <div class="carousel-overlay">
+        <div class="carousel-content">
+          <h1>Software especializado para flujos de trabajo digitales</h1>
+          <p>Optimiza tu proceso de diseño y fabricación dental</p>
+          <a class="carousel-btn" href="#productos">Conocer software</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Controles del carrusel -->
+    <div class="carousel-nav prev" onclick="prevSlide()">❮</div>
+    <div class="carousel-nav next" onclick="nextSlide()">❯</div>
+    
+    <!-- Indicadores de puntos -->
+    <div class="carousel-dots">
+      <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+      <div class="carousel-dot" onclick="goToSlide(1)"></div>
+      <div class="carousel-dot" onclick="goToSlide(2)"></div>
     </div>
   </div>
 </section>
 
-<section class="features">
+<section class="features" id="productos">
 <h2 class="section-title">Nuestros productos</h2>
 <div class="features-grid">
-  <div class="feature-card"><strong>Escáneres</strong><p>Alta precisión</p></div>
-  <div class="feature-card"><strong>Fresado</strong><p>Producción exacta</p></div>
-  <div class="feature-card"><strong>Software</strong><p>Flujos digitales</p></div>
+  <div class="feature-card"><strong>Escáneres</strong><p>Alta precisión para impresiones digitales</p></div>
+  <div class="feature-card"><strong>Fresado</strong><p>Producción exacta de restauraciones</p></div>
+  <div class="feature-card"><strong>Software</strong><p>Flujos digitales optimizados</p></div>
 </div>
 </section>
 
-<section class="carousel">
-<img src="Imagenes/Productos/Escaneres/pruebas (3).webp" class="active">
-<img src="Imagenes/Productos/Escaneres/pruebas (6).webp">
-<img src="Imagenes/Productos/Escaneres/pruebas (11).webp">
-
-<div class="contact-box">
-  <h3>Contacto directo</h3>
-  <p>+503 7745 1582</p>
-</div>
+<!-- SECCIÓN DE CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="contact-container">
+    <h2 class="contact-title">Contáctanos</h2>
+    <p class="contact-subtitle">Estamos aquí para asesorarte en soluciones digitales para tu consultorio dental</p>
+    
+    
+    <a href="https://wa.me/50377451582?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20productos%20dentales" class="whatsapp-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      Contactar por WhatsApp
+    </a>
+  </div>
 </section>
 
 <footer>
@@ -320,17 +550,74 @@ footer{
 </footer>
 
 <script>
+// Menú móvil
 function toggleMenu(){
   document.getElementById('menu').classList.toggle('show');
 }
 
-let slides=document.querySelectorAll('.carousel img');
-let i=0;
-setInterval(()=>{
-  slides[i].classList.remove('active');
-  i=(i+1)%slides.length;
-  slides[i].classList.add('active');
-},4000);
+// Carrusel de imágenes
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function showSlide(n) {
+  // Asegurar que el índice esté dentro del rango
+  if (n >= slides.length) {
+    currentSlide = 0;
+  } else if (n < 0) {
+    currentSlide = slides.length - 1;
+  } else {
+    currentSlide = n;
+  }
+  
+  // Ocultar todas las slides
+  slides.forEach(slide => {
+    slide.classList.remove('active');
+  });
+  
+  // Remover clase active de todos los puntos
+  dots.forEach(dot => {
+    dot.classList.remove('active');
+  });
+  
+  // Mostrar la slide actual
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+function goToSlide(n) {
+  showSlide(n);
+}
+
+// Cambio automático de slides cada 5 segundos
+let slideInterval = setInterval(nextSlide, 5000);
+
+// Pausar el carrusel cuando el usuario interactúa
+const carouselContainer = document.querySelector('.carousel-container');
+carouselContainer.addEventListener('mouseenter', () => {
+  clearInterval(slideInterval);
+});
+
+carouselContainer.addEventListener('mouseleave', () => {
+  slideInterval = setInterval(nextSlide, 5000);
+});
+
+// Cerrar menú al hacer clic en un enlace en dispositivos móviles
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      document.getElementById('menu').classList.remove('show');
+    }
+  });
+});
 </script>
 
 </body>
