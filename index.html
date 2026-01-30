@@ -1,643 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UP3D | Escáneres Dentales Digitales</title>
-    <link rel="icon" type="image/png" href="Imagenes/Productos/Logo - SIMBOLO.png">
-    <link rel="shortcut icon" href="Imagenes/Productos/Logo.png">
-    <link rel="apple-touch-icon" href="Imagenes/Productos/Logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #475569;
-            font-weight: 600;
-            display: block;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        /* Dropdown menu */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            border-radius: 8px;
-            padding: 0.5rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            padding: 0.75rem 1.5rem;
-            color: #475569;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f1f5f9;
-            color: #2563eb;
-            padding-left: 2rem;
-        }
-
-        .cta-btn {
-            background: #2563eb;
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .cta-btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* Hero */
-        .hero {
-            margin-top: 80px;
-            position: relative;
-            height: 90vh;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            z-index: 10;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            max-width: 800px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            max-width: 600px;
-        }
-
-        .hero-btn {
-            background: white;
-            color: #2563eb;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-            z-index: 20;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background: white;
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* Features */
-        .features {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #1e293b;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #1e293b;
-        }
-
-        .feature-card p {
-            color: #64748b;
-        }
-
-        /* Contact */
-        .contact {
-            padding: 6rem 2rem;
-            background: #000000;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .contact-bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 450px;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .contact-content {
-            text-align: left;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .contact-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #e5e5e5;
-        }
-
-        .contact-form {
-            background: #ffffff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #000000;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.9rem;
-            border: 2px solid #e5e5e5;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s ease;
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #000000;
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: #000000;
-            color: #ffffff;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #333333;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: #ffffff;
-            color: #000000;
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                height: 70vh;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .slider-dots {
-                bottom: 1rem;
-            }
-
-            .logo img {
-                height: 40px;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .contact-background {
-                grid-template-columns: 1fr;
-            }
-
-            .contact h2 {
-                font-size: 2rem;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP3D | Escaneres Digitales , Fresadoras y Software</title>
+
+<link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0f172a;
+  --secondary:#334155;
+  --accent:#2563eb;
+  --bg:#f8fafc;
+  --border:#e2e8f0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--primary);
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+
+nav{
+  max-width:1200px;
+  margin:auto;
+  padding:1rem 1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo img{height:40px}
+
+/* MENU */
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+  align-items:center;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--secondary);
+  font-weight:500;
+}
+
+/* DROPDOWN */
+.dropdown{position:relative}
+
+.dropdown-menu{
+  position:absolute;
+  top:140%;
+  left:0;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:6px;
+  min-width:180px;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:.8rem 1rem;
+  font-size:.9rem;
+}
+
+.dropdown-menu a:hover{
+  background:#f1f5f9;
+}
+
+/* MOBILE MENU */
+.menu-btn{
+  display:none;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  margin-top:75px;
+  position:relative;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(15,23,42,.55),rgba(15,23,42,.35));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:2rem;
+}
+
+.hero h1{
+  font-size:2.3rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  opacity:.9;
+  margin-bottom:2rem;
+}
+
+.hero-btn{
+  background:white;
+  color:var(--primary);
+  padding:.8rem 1.6rem;
+  border-radius:4px;
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* FEATURES */
+.features{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 1.5rem;
+}
+
+.section-title{
+  text-align:center;
+  font-size:1.9rem;
+  margin-bottom:3rem;
+}
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+.feature-card{
+  background:white;
+  padding:2rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+
+/* CAROUSEL */
+.carousel{
+  position:relative;
+  height:55vh;
+  overflow:hidden;
+}
+
+.carousel img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s;
+}
+
+.carousel img.active{opacity:1}
+
+/* CONTACT BOX */
+.contact-box{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:1.8rem 2.2rem;
+  border-radius:8px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
+
+.contact-box h3{margin-bottom:.4rem}
+.contact-box p{
+  font-weight:600;
+  color:var(--accent);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:2rem;
+  font-size:.85rem;
+  color:var(--secondary);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .menu-btn{display:block}
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    right:1.5rem;
+    background:white;
+    flex-direction:column;
+    width:220px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    padding:1rem;
+    display:none;
+  }
+
+  .nav-links.show{display:flex}
+
+  .dropdown-menu{
+    position:static;
+    opacity:1;
+    visibility:visible;
+    border:none;
+    padding-left:1rem;
+  }
+
+  .hero h1{font-size:1.8rem}
+  .hero p{font-size:1rem}
+
+  .contact-box{
+    width:85%;
+  }
+}
+</style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="#" class="logo">
-                <img src="Imagenes/Productos/Logo.png" alt="UP3D Logo">
-            </a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle">Productos</span>
-                    <div class="dropdown-menu">
-                        <a href="Productos.html">Escáneres</a>
-                        <a href="#fresadoras">Fresadoras</a>
-                        <a href="#software">Software</a>
-                    </div>
-                </li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#contacto" class="cta-btn">Solicitar Demo</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-        <div class="hero-slider">
-            <div class="hero-slide active">
-                <img src="imagen/Productos/pruebas (6).webp" alt="UP3D Scanner 1">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (1).webp" alt="UP3D Scanner 2">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (2).webp" alt="UP3D Scanner 3">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (3).webp" alt="UP3D Scanner 4">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (4).webp" alt="UP3D Scanner 5">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (8).webp" alt="UP3D Scanner 6">
-            </div>
-            <div class="hero-slide">
-                <img src="imagen/Productos/pruebas (7).webp" alt="UP3D Scanner 7">
-            </div>
-        </div>
-        <div class="hero-overlay">
-            <h1>Transformando la Odontología Digital</h1>
-            <p>Escáneres 3D y soluciones CAD/CAM de precisión para tu clínica dental</p>
-            <a href="#caracteristicas" class="hero-btn">Descubre Más</a>
-        </div>
-        <div class="slider-dots">
-            <span class="slider-dot active" data-slide="0"></span>
-            <span class="slider-dot" data-slide="1"></span>
-            <span class="slider-dot" data-slide="2"></span>
-            <span class="slider-dot" data-slide="3"></span>
-            <span class="slider-dot" data-slide="4"></span>
-            <span class="slider-dot" data-slide="5"></span>
-            <span class="slider-dot" data-slide="6"></span>
-        </div>
-    </section>
+<header>
+<nav>
+  <a class="logo" href="#"><img src="Imagenes/Productos/Logo.png"></a>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <ul class="nav-links" id="menu">
+    <li><a href="#inicio">Inicio</a></li>
+    <li class="dropdown">
+      <a href="#">Productos</a>
+      <div class="dropdown-menu">
+        <a href="Escaner.html">Escáneres</a>
+        <a href="Fresado.html">Fresado</a>
+        <a href="Software.html">Software</a>
+      </div>
+    </li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+</header>
 
-    <!-- Features -->
-    <section class="features" id="caracteristicas">
-        <h2 class="section-title">¿Por qué UP3D?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Alta Precisión</h3>
-                <p>Precisión de hasta 5 micras para resultados perfectos</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Rápido y Eficiente</h3>
-                <p>Escaneo completo en solo 15 segundos</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔧</div>
-                <h3>Fácil Integración</h3>
-                <p>Compatible con los principales software CAD/CAM</p>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="inicio">
+<img src="Imagenes/Productos/Escaneres/pruebas (4).webp">
+<div class="hero-overlay">
+  <div>
+    <h1>Odontología digital con precisión clínica</h1>
+    <p>Soluciones CAD/CAM para clínicas modernas</p>
+    <a class="hero-btn" href="#">Explorar soluciones</a>
+  </div>
+</div>
+</section>
 
-    <!-- Contact -->
-    <section class="contact" id="contacto">
-        <div class="contact-background">
-            <img src="Imagenes/up3d-lab-solution-dental-scanner-milling-workflow.webp" alt="UP3D Lab Solution" class="contact-bg-image">
-            <img src="Imagenes/up3d-soreal-chairside-solution-dental-restoration.webp" alt="UP3D Chairside Solution" class="contact-bg-image">
-        </div>
-        <div class="contact-container">
-            <div class="contact-content">
-                <h2>¿Listo para digitalizar tu clínica?</h2>
-                <p>Contáctanos y descubre cómo UP3D puede transformar tu práctica dental con tecnología de vanguardia. Nuestro equipo de expertos está listo para asesorarte.</p>
-            </div>
-            
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" placeholder="Dr. Juan Pérez" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" placeholder="tu@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
-            </form>
-        </div>
-    </section>
+<section class="features">
+<h2 class="section-title">Nuestros productos</h2>
+<div class="features-grid">
+  <div class="feature-card"><strong>Escáneres</strong><p>Alta precisión</p></div>
+  <div class="feature-card"><strong>Fresado</strong><p>Producción exacta</p></div>
+  <div class="feature-card"><strong>Software</strong><p>Flujos digitales</p></div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 UP3D Technology. Todos los derechos reservados.</p>
-    </footer>
+<section class="carousel">
+<img src="Imagenes/Productos/Escaneres/pruebas (1).webp" class="active">
+<img src="Imagenes/Productos/Escaneres/pruebas (2).webp">
+<img src="Imagenes/Productos/Escaneres/pruebas (3).webp">
 
-    <script>
-        // Carrusel automático de imágenes
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const totalSlides = slides.length;
+<div class="contact-box">
+  <h3>Contacto directo</h3>
+  <p>+503 7745 1582</p>
+</div>
+</section>
 
-        function showSlide(index) {
-            // Remover clase active de todas las slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Agregar clase active a la slide actual
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-        }
+<footer>
+© 2026 UP3D El Salvador. Todos los derechos reservados.
+</footer>
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+<script>
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('show');
+}
 
-        // Cambiar imagen cada 4 segundos
-        setInterval(nextSlide, 4000);
+let slides=document.querySelectorAll('.carousel img');
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove('active');
+  i=(i+1)%slides.length;
+  slides[i].classList.add('active');
+},4000);
+</script>
 
-        // Click en los dots para cambiar de slide
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index;
-                showSlide(currentSlide);
-            });
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            e.target.reset();
-        });
-    </script>
 </body>
-
 </html>

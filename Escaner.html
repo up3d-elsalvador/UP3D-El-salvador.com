@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaneras | Tecnología Avanzada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* VIDEO INTRO */
+.video-container{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 1.5s ease;
+}
+.video-container.fade-out{
+    opacity:0;
+    pointer-events:none;
+}
+.video-intro{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CLICK MESSAGE */
+.click-message{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:fit-content;
+    height:fit-content;
+    text-align:center;
+    background:rgba(0,0,0,.75);
+    padding:25px 40px;
+    border-radius:10px;
+    backdrop-filter:blur(10px);
+    display:none;
+    cursor:pointer;
+}
+.click-message.show{display:block;}
+.click-message i{font-size:3rem;margin-bottom:10px;}
+.click-message p{font-size:1.1rem}
+
+/* WEBSITE */
+.website-container{
+    min-height:100vh;
+    opacity:0;
+    transform:translateY(20px);
+    transition:1.5s ease;
+    padding:20px;
+}
+.website-container.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:40px 10px;
+    border-bottom:1px solid #222;
+}
+.logo{
+    font-size:3rem;
+    font-weight:800;
+    letter-spacing:6px;
+}
+.tagline{
+    margin-top:10px;
+    font-size:1rem;
+    color:#aaa;
+    letter-spacing:3px;
+}
+
+/* MAIN */
+.main-content{
+    max-width:1200px;
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+/* SECTIONS */
+.section-title{
+    font-size:1.9rem;
+    margin-bottom:20px;
+    border-left:4px solid #fff;
+    padding-left:15px;
+}
+.section-text{
+    font-size:1.05rem;
+    color:#ddd;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+/* FEATURES */
+.features-list{
+    list-style:none;
+}
+.features-list li{
+    padding:12px 0;
+    border-bottom:1px solid #222;
+    color:#ccc;
+}
+.features-list i{
+    margin-right:10px;
+}
+
+/* SERVICES */
+.services{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+.service-card{
+    background:#111;
+    padding:25px;
+    border-radius:6px;
+    transition:.3s;
+}
+.service-card:hover{
+    transform:translateY(-6px);
+    background:#1a1a1a;
+}
+.service-icon{
+    font-size:2.2rem;
+    margin-bottom:15px;
+}
+.service-title{
+    font-size:1.25rem;
+    margin-bottom:10px;
+}
+.service-desc{
+    color:#bbb;
+    line-height:1.6;
+}
+
+/* IMAGES SECTION */
+.gallery{
+    margin-top:80px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.gallery img{
+    width:100%;
+    border-radius:6px;
+    object-fit:cover;
+}
+
+/* FOOTER */
+footer{
+    margin-top:100px;
+    padding:40px 10px;
+    text-align:center;
+    border-top:1px solid #222;
+    color:#777;
+}
+.footer-links{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+.footer-links a{
+    color:#aaa;
+    text-decoration:none;
+}
+.footer-links a:hover{color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .main-content{grid-template-columns:1fr}
+    .services{grid-template-columns:1fr}
+    .gallery{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+    .logo{font-size:2.1rem}
+    .section-title{font-size:1.5rem}
+    .gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="video-container" id="videoContainer">
+    <video class="video-intro" id="introVideo" muted autoplay playsinline>
+        <source src="videos/part1.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-wireflow-technology-3237-large.mp4" type="video/mp4">
+    </video>
+    <div class="click-message" id="clickMessage">
+        <i class="fas fa-play-circle"></i>
+        <p>Haz clic para iniciar</p>
+    </div>
+</div>
+
+<div class="website-container" id="websiteContainer">
+
+<header>
+    <h1 class="logo">Escaneras</h1>
+    <p class="tagline">TECNOLOGÍA • PRECISIÓN • FUTURO</p>
+</header>
+
+<section class="main-content">
+
+<section class="introduction">
+    <h2 class="section-title">Escaneres Digitales de Alta Precisión</h2>
+    <p class="section-text">Descubre nuestra gama de escaneres digitales diseñados para ofrecer la máxima precisión y eficiencia en cada escaneo. Ideales para profesionales que buscan calidad y rapidez en sus procesos.</p>
+
+</section>
+
+<section class="gallery">
+    <img src="Imagenes/Productos/Escaneres/Escaner_up1000.webp">
+    <img src="Imagenes/Productos/Escaneres/Escaner_up400.webp">
+    <img src="Imagenes/Productos/Escaneres/Escaner_up560.webp">
+    <img src="Imagenes/Productos/Escaneres/Escaner_up560optical.webp">
+ 
+</section>
+
+<footer>
+    <p>&copy; 2026 Escaneras</p>
+    <div class="footer-links">
+        <a href="#">Contacto</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Equipo</a>
+        <a href="#">Blog</a>
+    </div>
+</footer>
+      
+
+</div>
+
+<script>
+const videoContainer=document.getElementById("videoContainer");
+const websiteContainer=document.getElementById("websiteContainer");
+const introVideo=document.getElementById("introVideo");
+const clickMessage=document.getElementById("clickMessage");
+
+const playVideo=()=>{introVideo.play().catch(()=>clickMessage.classList.add("show"));};
+playVideo();
+clickMessage.onclick=playVideo;
+introVideo.onended=()=>{videoContainer.classList.add("fade-out");setTimeout(()=>websiteContainer.classList.add("show"),800);}
+</script>
+
+</body>
+</html>
