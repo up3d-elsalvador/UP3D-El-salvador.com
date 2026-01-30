@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UP3D | Escaneres Digitales , Fresadoras y Software</title>
+<title>UP3D | Escáneres Digitales, Fresadoras y Software</title>
 
 <link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -99,29 +99,35 @@ nav{
   cursor:pointer;
 }
 
-/* HERO */
+/* HERO VIDEO */
 .hero{
   height:90vh;
   margin-top:75px;
   position:relative;
+  overflow:hidden;
 }
 
-.hero img{
+.hero-video{
+  position:absolute;
+  top:50%;
+  left:50%;
   width:100%;
   height:100%;
   object-fit:cover;
+  transform:translate(-50%,-50%);
 }
 
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom,rgba(15,23,42,.55),rgba(15,23,42,.35));
+  background:linear-gradient(to bottom,rgba(15,23,42,.6),rgba(15,23,42,.35));
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
   color:white;
   padding:2rem;
+  z-index:1;
 }
 
 .hero h1{
@@ -242,6 +248,10 @@ footer{
     padding-left:1rem;
   }
 
+  .hero{
+    height:70vh;
+  }
+
   .hero h1{font-size:1.8rem}
   .hero p{font-size:1rem}
 
@@ -274,14 +284,20 @@ footer{
 </header>
 
 <section class="hero" id="inicio">
-<img src="Imagenes/Productos/Escaneres/pruebas (4).webp">
-<div class="hero-overlay">
-  <div>
-    <h1>Odontología digital con precisión clínica</h1>
-    <p>Soluciones CAD/CAM para clínicas modernas</p>
-    <a class="hero-btn" href="#">Explorar soluciones</a>
+
+  <!-- VIDEO RESPONSIVE -->
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="Videos/hero.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5
+  </video>
+
+  <div class="hero-overlay">
+    <div>
+      <h1>Odontología digital con precisión clínica</h1>
+      <p>Soluciones CAD/CAM para clínicas modernas</p>
+      <a class="hero-btn" href="#">Explorar soluciones</a>
+    </div>
   </div>
-</div>
 </section>
 
 <section class="features">
