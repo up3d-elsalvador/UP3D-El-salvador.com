@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Escaneras</title>
-
+<title>UP3D El Salvador | Software</title>
+<link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -38,6 +38,10 @@ body{
 .video-container.fade-out{
     opacity:0;
     pointer-events:none;
+}
+
+.video-container.hidden{
+    display:none;
 }
 
 .video-intro{
@@ -90,15 +94,20 @@ body{
     transform:translateY(0);
 }
 
+/* ================= HEADER ================= */
 header{
-    padding:30px 0;
+    padding:40px 20px;
     text-align:center;
     border-bottom:1px solid #333;
-    margin-bottom:50px;
 }
 
-.logo{
-    font-size:3rem;
+header img{
+    width:120px;
+    margin-bottom:15px;
+}
+
+.logo-text{
+    font-size:2.5rem;
     letter-spacing:8px;
 }
 
@@ -107,79 +116,132 @@ header{
     letter-spacing:3px;
 }
 
-/* ================= CONTENT ================= */
-.main-content{
+/* ================= CATÁLOGO ================= */
+.catalogo{
     max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-}
-
-@media(max-width:900px){
-    .main-content{
-        grid-template-columns:1fr;
-    }
-}
-
-.section-title{
-    font-size:2rem;
-    margin-bottom:20px;
-    border-left:4px solid #fff;
-    padding-left:15px;
-}
-
-.section-text{
-    color:#ddd;
-    line-height:1.7;
-    margin-bottom:15px;
-}
-
-/* ================= GALERÍA ================= */
-.gallery-section{
-    max-width:1200px;
-    margin:80px auto;
+    margin:100px auto;
     padding:0 20px;
 }
 
-.gallery-grid{
+.catalogo-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
-.gallery-card{
+.product-card{
     background:#111;
-    border-radius:10px;
-    padding:20px;
-    text-align:center;
-    transition:.3s ease;
+    border-radius:16px;
+    padding:25px;
+    cursor:pointer;
+    transition:.35s ease;
 }
 
-.gallery-card:hover{
-    transform:translateY(-6px);
+.product-card:hover{
+    transform:translateY(-10px) scale(1.02);
     background:#1a1a1a;
 }
 
-.gallery-card img{
+.product-card img{
     width:100%;
-    height:180px;
+    height:190px;
     object-fit:contain;
+    margin-bottom:20px;
+}
+
+.product-card h3{
+    margin-bottom:10px;
+}
+
+.product-card p{
+    color:#bbb;
+    font-size:.9rem;
+}
+
+/* ================= MODAL PRODUCTO ================= */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(10px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:200;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    background:#111;
+    width:90%;
+    max-width:900px;
+    border-radius:25px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    animation:zoomIn .6s ease;
+}
+
+@keyframes zoomIn{
+    from{transform:scale(.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.modal-content img{
+    width:100%;
+    object-fit:contain;
+}
+
+.modal-content h2{
     margin-bottom:15px;
 }
 
-.gallery-card p{
-    color:#ddd;
-    letter-spacing:1px;
+.modal-content p{
+    color:#ccc;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.buy-btn{
+    display:inline-block;
+    padding:14px 30px;
+    border:1px solid #fff;
+    color:#fff;
+    text-decoration:none;
+    letter-spacing:2px;
+    transition:.3s ease;
+}
+
+.buy-btn:hover{
+    background:#fff;
+    color:#000;
+}
+
+.close{
+    position:absolute;
+    top:25px;
+    right:30px;
+    font-size:1.8rem;
+    cursor:pointer;
 }
 
 /* ================= FOOTER ================= */
 footer{
-    margin-top:80px;
-    padding:40px 0;
+    margin-top:120px;
+    padding:40px;
     text-align:center;
     border-top:1px solid #333;
     color:#888;
+}
+
+@media(max-width:800px){
+    .modal-content{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
@@ -190,7 +252,6 @@ footer{
 <div class="video-container" id="videoContainer">
     <video class="video-intro" id="introVideo" muted autoplay playsinline preload="auto">
         <source src="videos/part1.mp4" type="video/mp4">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-wireflow-technology-3237-large.mp4" type="video/mp4">
     </video>
 
     <div class="click-message" id="clickMessage">
@@ -203,43 +264,78 @@ footer{
 <div class="website-container" id="websiteContainer">
 
 <header>
-    <h1 class="logo">Escaneras</h1>
-    <p class="tagline">TECNOLOGÍA Y DISEÑO PARA EL FUTURO</p>
+    <img src="Imagenes/Productos/Logo.png" alt="UP3D Logo">
+    <div class="logo-text">SOFTWARE</div>
+    <p class="tagline">SOLUCIONES DIGITALES PARA ODONTOLOGÍA</p>
 </header>
 
-<div class="main-content">
-    <div>
-        <h2 class="section-title">Bienvenido</h2>
-        <p class="section-text">
-            Innovamos en tecnología de escaneo dental con precisión, diseño y rendimiento profesional.
-        </p>
-    </div>
+<section class="catalogo">
+    <h2 class="logo-text" style="text-align:center;margin-bottom:60px;">CATÁLOGO</h2>
 
-    <div>
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <p class="section-text">
-            Equipos de última generación diseñados para clínicas modernas y laboratorios digitales.
-        </p>
-    </div>
-</div>
+    <div class="catalogo-grid">
 
-<!-- GALERÍA -->
-<section class="gallery-section">
-    <h2 class="section-title">Nuestros Equipos</h2>
+        <div class="product-card" onclick="openProduct(
+            'AI-CAD',
+            'Imagenes/Productos/Software/ai-cad.png',
+            'Software de diseño CAD con inteligencia artificial para planificación de tratamientos odontológicos.'
+        )">
+            <img src="Imagenes/Productos/Software/ai-cad.png">
+            <h3>AI-CAD</h3>
+            <p>Diseño asistido por IA</p>
+        </div>
 
-    <div class="gallery-grid">
-        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up400.webp"><p>Escaner UP400</p></div>
-        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up560.webp"><p>Escaner UP560</p></div>
-        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up560optical.webp"><p>Escaner UP560 Optical</p></div>
-        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up1000.webp"><p>Escaner UP610</p></div>
-        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/UP610.webp"><p>UP610</p></div>
+        <div class="product-card" onclick="openProduct(
+            'UP-CAD',
+            'Imagenes/Productos/Software/upcad.png',
+            'Software CAD profesional para diseño dental, restauraciones y ortodoncia digital.'
+        )">
+            <img src="Imagenes/Productos/Software/upcad.png">
+            <h3>UP-CAD</h3>
+            <p>Software CAD dental</p>
+        </div>
+
+        <div class="product-card" onclick="openProduct(
+            'UP-CAM',
+            'Imagenes/Productos/Software/upcam.png',
+            'Software CAM para fabricación digital, fresado y producción de restauraciones dentales.'
+        )">
+            <img src="Imagenes/Productos/Software/upcam.png">
+            <h3>UP-CAM</h3>
+            <p>Software CAM dental</p>
+        </div>
+
+        <div class="product-card" onclick="openProduct(
+            'Suite Completa AI-CAD/CAM',
+            'Imagenes/Productos/Software/ai-cad.png',
+            'Paquete integral que combina AI-CAD y UP-CAM para un flujo de trabajo digital completo.'
+        )">
+            <img src="Imagenes/Productos/Software/ai-cad.png">
+            <h3>Suite Completa</h3>
+            <p>Soluciones CAD/CAM integrales</p>
+        </div>
+
     </div>
 </section>
 
 <footer>
-    © 2026 UP3D El Salvador. Todos los derechos reservados.
+    © 2026 UP3D El Salvador · Software dental
 </footer>
 
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="productModal">
+    <div class="close" onclick="closeProduct()">✕</div>
+    <div class="modal-content">
+        <img id="modalImg">
+        <div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <a id="buyBtn" class="buy-btn" target="_blank">
+                MÁS INFORMACIÓN VÍA WHATSAPP
+            </a>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -248,23 +344,45 @@ const container = document.getElementById("videoContainer");
 const web = document.getElementById("websiteContainer");
 const clickMsg = document.getElementById("clickMessage");
 
-const playVideo = ()=>{
-    video.play().then(()=>{
-        clickMsg.classList.remove("show");
-    }).catch(()=>{
-        clickMsg.classList.add("show");
+const videoShown = localStorage.getItem("introVideoShown");
+
+if (videoShown === "true") {
+    container.classList.add("hidden");
+    web.classList.add("show");
+} else {
+    const playVideo = ()=>{
+        video.play().then(()=>{
+            clickMsg.classList.remove("show");
+        }).catch(()=>{
+            clickMsg.classList.add("show");
+        });
+    };
+
+    playVideo();
+    clickMsg.addEventListener("click", playVideo);
+
+    video.addEventListener("ended", ()=>{
+        container.classList.add("fade-out");
+        setTimeout(()=>{
+            web.classList.add("show");
+            localStorage.setItem("introVideoShown","true");
+        },800);
     });
-};
+}
 
-playVideo();
+function openProduct(title,img,desc){
+    modalTitle.innerText = title;
+    modalImg.src = img;
+    modalDesc.innerText = desc;
+    buyBtn.href = `https://wa.me/+50377451582?text=${encodeURIComponent(
+        'Hola, estoy interesado en el software '+title
+    )}`;
+    productModal.classList.add("show");
+}
 
-clickMsg.addEventListener("click", playVideo);
-container.addEventListener("click", ()=> video.paused && playVideo());
-
-video.addEventListener("ended", ()=>{
-    container.classList.add("fade-out");
-    setTimeout(()=> web.classList.add("show"), 800);
-});
+function closeProduct(){
+    productModal.classList.remove("show");
+}
 </script>
 
 </body>
