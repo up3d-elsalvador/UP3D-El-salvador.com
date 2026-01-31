@@ -6,239 +6,131 @@
 <title>UP3D El Salvador | Escáneres Digitales, Fresadoras y Software</title>
 
 <link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome para iconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Animate.css para animaciones suaves -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
 <style>
-/* ===== RESET Y CONFIGURACIONES GENERALES ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --primary:#0f172a;
+  --secondary:#334155;
+  --accent:#2563eb;
+  --bg:#f8fafc;
+  --border:#e2e8f0;
+  --whatsapp:#25D366;
 }
 
-html {
-  scroll-behavior: smooth;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--primary);
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  color: #333;
-  background: #ffffff;
-  overflow-x: hidden;
-  line-height: 1.6;
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
 }
 
-/* ===== EFECTO DE FONDO EN MOVIMIENTO ===== */
-.parallax-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-  overflow: hidden;
+nav{
+  max-width:1200px;
+  margin:auto;
+  padding:1rem 1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.parallax-layer {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  opacity: 0.4;
-  animation: float 60s infinite linear;
+.logo img{height:40px}
+
+/* MENU */
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+  align-items:center;
 }
 
-.layer-1 {
-  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%231a73e8" stroke-width="0.5"/><circle cx="50" cy="50" r="15" fill="none" stroke="%231a73e8" stroke-width="0.3"/></svg>') repeat;
-  animation-duration: 120s;
-  top: -50%;
-  left: -50%;
+.nav-links a{
+  text-decoration:none;
+  color:var(--secondary);
+  font-weight:500;
+  transition:color 0.3s;
 }
 
-.layer-2 {
-  background: url('data:image/svg+xml,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><path d="M10,60 Q60,10 110,60 T210,60" fill="none" stroke="%234285f4" stroke-width="0.3" opacity="0.7"/></svg>') repeat;
-  animation-duration: 90s;
-  animation-direction: reverse;
-  top: -50%;
-  left: -50%;
+.nav-links a:hover{
+  color:var(--accent);
 }
 
-.layer-3 {
-  background: url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="5" fill="%234285f4" opacity="0.2"/><circle cx="20" cy="20" r="3" fill="%231a73e8" opacity="0.1"/></svg>') repeat;
-  animation-duration: 150s;
-  top: -50%;
-  left: -50%;
+/* DROPDOWN */
+.dropdown{position:relative}
+
+.dropdown-menu{
+  position:absolute;
+  top:140%;
+  left:0;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:6px;
+  min-width:180px;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-@keyframes float {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
 }
 
-/* ===== HEADER Y NAVEGACIÓN MEJORADA ===== */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+.dropdown-menu a{
+  display:block;
+  padding:.8rem 1rem;
+  font-size:.9rem;
 }
 
-header.scrolled {
-  padding: 5px 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.dropdown-menu a:hover{
+  background:#f1f5f9;
 }
 
-nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  position: relative;
+/* MOBILE MENU */
+.menu-btn{
+  display:none;
+  font-size:1.5rem;
+  cursor:pointer;
 }
 
-.logo img {
-  height: 50px;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.logo img:hover {
-  transform: scale(1.05);
-}
-
-.menu-btn {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #000000;
-  transition: transform 0.3s ease;
-}
-
-.menu-btn:hover {
-  transform: rotate(90deg);
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-}
-
-.nav-links li {
-  position: relative;
-  margin-left: 2rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #000000;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 8px 0;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #000000, #000000);
-  transition: width 0.4s ease;
-}
-
-.nav-links a:hover {
-  color: #424242;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Dropdown */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  min-width: 220px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  z-index: 100;
-  padding: 10px 0;
-}
-
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 12px 20px;
-  color: #333;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border-left: 3px solid transparent;
-}
-
-.dropdown-menu a:hover {
-  background-color: #f5f9ff;
-  color: #1a73e8;
-  border-left: 3px solid #000000;
-  padding-left: 25px;
-}
-
-/* ===== CARRUSEL MEJORADO ===== */
+/* CARRUSEL AL INICIO */
 .carousel-section {
-  margin-top: 80px;
+  margin-top: 75px;
+  height: 85vh;
   position: relative;
   overflow: hidden;
-  border-radius: 0 0 20px 20px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-container {
   position: relative;
-  height: 80vh;
-  min-height: 600px;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-slide {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-  overflow: hidden;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-slide.active {
@@ -249,13 +141,6 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.8);
-  transform: scale(1.1);
-  transition: transform 10s ease;
-}
-
-.carousel-slide.active img {
-  transform: scale(1);
 }
 
 .carousel-overlay {
@@ -264,376 +149,249 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6));
   display: flex;
   align-items: center;
-  padding: 0 10%;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
 }
 
 .carousel-content {
-  max-width: 600px;
-  color: rgb(77, 69, 69);
-  transform: translateY(30px);
-  opacity: 0;
-  transition: all 0.8s ease 0.3s;
-}
-
-.carousel-slide.active .carousel-content {
-  transform: translateY(0);
-  opacity: 1;
+  max-width: 800px;
+  z-index: 2;
 }
 
 .carousel-content h1 {
-  font-size: 3.2rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .carousel-content p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   opacity: 0.9;
-  font-weight: 400;
 }
 
 .carousel-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #1a73e8, #4285f4);
-  color: white;
-  padding: 15px 35px;
-  border-radius: 50px;
-  text-decoration: none;
+  background: white;
+  color: var(--primary);
+  padding: 0.9rem 2rem;
+  border-radius: 4px;
   font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.4s ease;
-  box-shadow: 0 10px 20px rgba(26, 115, 232, 0.3);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.carousel-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #202020, #000000);
-  transition: all 0.5s ease;
-  z-index: -1;
-}
-
-.carousel-btn:hover::before {
-  left: 0;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .carousel-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Indicadores del carrusel */
 .carousel-dots {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  gap: 0.8rem;
   z-index: 10;
 }
 
 .carousel-dot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(255,255,255,0.5);
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.carousel-dot:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: scale(1.2);
+  transition: background 0.3s;
 }
 
 .carousel-dot.active {
-  background-color: white;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  transform: scale(1.3);
+  background: white;
 }
 
-/* ===== SECCIÓN DE PRODUCTOS MEJORADA ===== */
-.features {
-  max-width: 1200px;
-  margin: 100px auto;
-  padding: 0 20px;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 70px;
-  color: #000000;
-  position: relative;
-  padding-bottom: 20px;
-}
-
-.section-title::after {
-  content: '';
+.carousel-nav {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 5px;
-  background: linear-gradient(90deg, #000000, #4285f4);
-  border-radius: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 10;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+.carousel-nav:hover {
+  background: rgba(255,255,255,0.3);
 }
 
-.feature-card {
-  background-color: rgb(255, 255, 255);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  border: 1px solid rgba(0, 0, 0, 0.03);
+.carousel-nav.prev {
+  left: 2rem;
 }
 
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #1a73e8, #4285f4);
-  z-index: 2;
+.carousel-nav.next {
+  right: 2rem;
 }
 
-.feature-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(26, 115, 232, 0.05), transparent);
-  transition: left 0.7s ease;
-  z-index: -1;
+/* FEATURES */
+.features{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 1.5rem;
 }
 
-.feature-card:hover::after {
-  left: 100%;
+.section-title{
+  text-align:center;
+  font-size:1.9rem;
+  margin-bottom:3rem;
+}
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+.feature-card{
+  background:white;
+  padding:2rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .feature-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.feature-card strong {
-  display: block;
-  font-size: 1.8rem;
-  color: #000000;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.feature-card p {
-  color: #555;
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-/* ===== SECCIÓN DE CONTACTO MEJORADA ===== */
+/* SECCIÓN DE CONTACTO */
 .contact-section {
   max-width: 1200px;
-  margin: 150px auto 100px;
-  padding: 0 20px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
 }
 
 .contact-container {
-  background: linear-gradient(135deg, #1a237e, #283593);
-  padding: 80px 60px;
-  border-radius: 30px;
+  background: white;
+  border-radius: 10px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
   text-align: center;
-  color: white;
-  box-shadow: 0 30px 60px rgba(26, 35, 126, 0.3);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.contact-container::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: float 120s infinite linear;
-  z-index: -1;
 }
 
 .contact-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 25px;
-  line-height: 1.2;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
 }
 
 .contact-subtitle {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  opacity: 0.9;
-  line-height: 1.7;
+  color: var(--secondary);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-phone {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-phone i {
+  color: var(--primary);
 }
 
 .whatsapp-btn {
+  background: var(--whatsapp);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white;
-  padding: 20px 45px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.3rem;
-  transition: all 0.4s ease;
-  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.whatsapp-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #128c7e, #25d366);
-  transition: all 0.5s ease;
-  z-index: -1;
-}
-
-.whatsapp-btn:hover::before {
-  left: 0;
+  gap: 0.8rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-btn:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 25px 40px rgba(37, 211, 102, 0.4);
+  background: #1da851;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
 .whatsapp-btn i {
-  font-size: 1.8rem;
-  margin-right: 15px;
+  font-size: 1.3rem;
 }
 
-/* ===== FOOTER MEJORADO ===== */
-footer {
-  text-align: center;
-  padding: 30px 20px;
-  background-color: #1a237e;
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:2rem;
+  font-size:.85rem;
+  color:var(--secondary);
+  background: var(--primary);
   color: white;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
+  margin-top: 3rem;
 }
 
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #1a73e8, #4285f4);
-}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .menu-btn{display:block}
+  
+  .nav-links{
+    position:absolute;
+    top:70px;
+    right:1.5rem;
+    background:white;
+    flex-direction:column;
+    width:220px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    padding:1rem;
+    display:none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 992px) {
-  .carousel-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .section-title, .contact-title {
-    font-size: 2.3rem;
-  }
-  
-  .contact-container {
-    padding: 60px 40px;
-  }
-}
+  .nav-links.show{display:flex}
 
-@media (max-width: 768px) {
-  .menu-btn {
-    display: block;
-  }
-  
-  .nav-links {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    z-index: 999;
-  }
-  
-  .nav-links.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .nav-links li {
-    margin: 15px 0;
-  }
-  
-  .dropdown-menu {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
+  .dropdown-menu{
+    position:static;
+    opacity:1;
+    visibility:visible;
+    border:none;
+    padding-left:1rem;
     box-shadow: none;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin-top: 10px;
-    display: none;
   }
   
-  .dropdown.active .dropdown-menu {
-    display: block;
+  .carousel-section {
+    height: 70vh;
   }
   
   .carousel-content h1 {
@@ -644,69 +402,67 @@ footer::before {
     font-size: 1rem;
   }
   
-  .carousel-overlay {
-    padding: 0 5%;
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
   
-  .carousel-container {
-    height: 70vh;
-    min-height: 500px;
+  .carousel-nav.prev {
+    left: 1rem;
   }
   
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 576px) {
-  .carousel-content h1 {
-    font-size: 1.8rem;
-  }
-  
-  .carousel-btn, .whatsapp-btn {
-    padding: 15px 30px;
-    font-size: 1rem;
+  .carousel-nav.next {
+    right: 1rem;
   }
   
   .contact-container {
-    padding: 50px 20px;
+    padding: 2rem 1.5rem;
   }
   
   .contact-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   
-  .contact-subtitle {
-    font-size: 1rem;
+  .contact-phone {
+    font-size: 1.3rem;
+  }
+}
+
+@media(max-width: 600px) {
+  .carousel-section {
+    height: 60vh;
   }
   
-  .section-title {
-    font-size: 1.8rem;
+  .carousel-content h1 {
+    font-size: 1.7rem;
+  }
+  
+  .carousel-content p {
+    font-size: 0.95rem;
+  }
+  
+  .carousel-nav {
+    display: none;
   }
 }
 </style>
 </head>
 
 <body>
-<!-- Fondo en movimiento -->
-<div class="parallax-bg">
-  <div class="parallax-layer layer-1"></div>
-  <div class="parallax-layer layer-2"></div>
-  <div class="parallax-layer layer-3"></div>
-</div>
 
-<header id="main-header">
+<header>
 <nav>
-  <a class="logo" href="#"><img src="Imagenes/Productos/Logo.png" alt="UP3D El Salvador"></a>
+  <a class="logo" href="#"><img src="Imagenes/Productos/Logo.png"></a>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
   <ul class="nav-links" id="menu">
     <li><a href="#inicio">Inicio</a></li>
     <li class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">Productos</a>
+      <a href="#">Productos</a>
       <div class="dropdown-menu">
-        <a href="Escaner.html">Escáneres Dentales</a>
-        <a href="Fresado.html">Fresadoras CAD/CAM</a>
-        <a href="Software.html">Software Dental</a>
+        <a href="Escaner.html">Escáneres</a>
+        <a href="Fresado.html">Fresado</a>
+        <a href="Software.html">Software</a>
       </div>
     </li>
     <li><a href="#contacto">Contacto</a></li>
@@ -714,293 +470,151 @@ footer::before {
 </nav>
 </header>
 
-<!-- ================= CARRUSEL ================= -->
+<!-- CARRUSEL AL INICIO -->
 <section class="carousel-section" id="inicio">
   <div class="carousel-container">
-
     <!-- Slide 1 -->
     <div class="carousel-slide active">
       <img src="Imagenes/Productos/Escaneres/pruebas (3).webp" alt="Escáner dental de alta precisión">
       <div class="carousel-overlay">
         <div class="carousel-content">
-          <h1 class="animate__animated animate__fadeInDown">Odontología digital con precisión clínica</h1>
-          <p class="animate__animated animate__fadeIn animate__delay-1s">
-            Impulsa tu consultorio con tecnología CAD/CAM de última generación. 
-            Digitaliza, diseña y produce restauraciones con exactitud, rapidez y confianza.
-          </p>
-          <a class="carousel-btn animate__animated animate__fadeInUp animate__delay-2s" href="#productos">Explorar soluciones</a>
+          <h1>Odontología digital con precisión clínica</h1>
+          <p>Soluciones CAD/CAM para clínicas modernas</p>
+          <a class="carousel-btn" href="#productos">Explorar soluciones</a>
         </div>
       </div>
     </div>
-
+    
     <!-- Slide 2 -->
     <div class="carousel-slide">
       <img src="Imagenes/Productos/Escaneres/pruebas (6).webp" alt="Fresadora dental">
       <div class="carousel-overlay">
         <div class="carousel-content">
           <h1>Tecnología de fresado avanzada</h1>
-          <p>
-            Fresadoras dentales diseñadas para producir coronas, puentes, carillas y estructuras
-            con tolerancias micrométricas y resultados estéticos superiores.
-          </p>
+          <p>Producción exacta de prótesis y restauraciones</p>
           <a class="carousel-btn" href="#productos">Ver equipos</a>
         </div>
       </div>
     </div>
-
+    
     <!-- Slide 3 -->
     <div class="carousel-slide">
       <img src="Imagenes/Productos/Escaneres/pruebas (11).webp" alt="Software dental especializado">
       <div class="carousel-overlay">
         <div class="carousel-content">
-          <h1>Software dental inteligente</h1>
-          <p>
-            Optimiza tu flujo de trabajo con software intuitivo para diseño CAD, planificación,
-            simulación y fabricación dental totalmente digital.
-          </p>
+          <h1>Software especializado para flujos de trabajo digitales</h1>
+          <p>Optimiza tu proceso de diseño y fabricación dental</p>
           <a class="carousel-btn" href="#productos">Conocer software</a>
         </div>
       </div>
     </div>
-
-    <!-- Slide 4 -->
-    <div class="carousel-slide">
-      <img src="Imagenes/Productos/Escaneres/pruebas (12).webp" alt="Flujo digital dental">
-      <div class="carousel-overlay">
-        <div class="carousel-content">
-          <h1>Un flujo digital completo</h1>
-          <p>
-            Desde el escaneo intraoral hasta la restauración final. 
-            Integra equipos, software y experiencia clínica en un solo ecosistema digital.
-          </p>
-          <a class="carousel-btn" href="#productos">Ver ecosistema</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Indicadores -->
+    
+    
+    <!-- Indicadores de puntos -->
     <div class="carousel-dots">
       <div class="carousel-dot active" onclick="goToSlide(0)"></div>
       <div class="carousel-dot" onclick="goToSlide(1)"></div>
       <div class="carousel-dot" onclick="goToSlide(2)"></div>
-      <div class="carousel-dot" onclick="goToSlide(3)"></div>
     </div>
-
   </div>
 </section>
 
-<!-- ================= PRODUCTOS ================= -->
 <section class="features" id="productos">
-<h2 class="section-title">Soluciones digitales para odontología moderna</h2>
-
+<h2 class="section-title">Nuestros productos</h2>
 <div class="features-grid">
-
-  <div class="feature-card">
-    <strong>Escáneres Dentales</strong>
-    <p>
-      Captura impresiones digitales de alta fidelidad con escáneres diseñados para
-      precisión clínica, comodidad del paciente y compatibilidad total con flujos CAD/CAM.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <strong>Fresadoras CAD/CAM</strong>
-    <p>
-      Equipos de fresado robustos y eficientes capaces de trabajar múltiples materiales
-      como zirconio, PMMA, resinas y cerámicas híbridas con resultados consistentes.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <strong>Software Dental</strong>
-    <p>
-      Plataformas de diseño y fabricación que permiten planificar, modelar y producir
-      restauraciones con rapidez, precisión y control total del proceso digital.
-    </p>
-  </div>
-
+  <div class="feature-card"><strong>Escáneres</strong><p>Alta precisión para impresiones digitales</p></div>
+  <div class="feature-card"><strong>Fresado</strong><p>Producción exacta de restauraciones</p></div>
+  <div class="feature-card"><strong>Software</strong><p>Flujos digitales optimizados</p></div>
 </div>
 </section>
 
-<!-- ================= CONTACTO ================= -->
+<!-- SECCIÓN DE CONTACTO -->
 <section class="contact-section" id="contacto">
   <div class="contact-container">
-    <h2 class="contact-title">Asesoría especializada en odontología digital</h2>
-    <p class="contact-subtitle">
-      Nuestro equipo te acompaña en cada etapa de la transformación digital de tu clínica o laboratorio,
-      desde la elección del equipo hasta la implementación completa del flujo CAD/CAM.
-    </p>
-
-    <a href="https://wa.me/50377451582?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20productos%20dentales" 
-       class="whatsapp-btn" target="_blank">
+    <h2 class="contact-title">Contáctanos</h2>
+    <p class="contact-subtitle">Estamos aquí para asesorarte en soluciones digitales para tu consultorio dental</p>
+    
+    
+    <a href="https://wa.me/50377451582?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20productos%20dentales" class="whatsapp-btn" target="_blank">
       <i class="fab fa-whatsapp"></i>
-      Hablar con un asesor
+      Contactar por WhatsApp
     </a>
   </div>
 </section>
 
 <footer>
-© 2026 UP3D El Salvador · Tecnología dental de precisión · Todos los derechos reservados
+© 2026 UP3D El Salvador. Todos los derechos reservados.
 </footer>
 
-<!-- JavaScript Mejorado -->
 <script>
-// Variables globales
+// Menú móvil
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('show');
+}
+
+// Carrusel de imágenes
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const dots = document.querySelectorAll('.carousel-dot');
-const header = document.getElementById('main-header');
-let slideInterval;
 
-// Inicializar el carrusel automático
-function initCarousel() {
-  slideInterval = setInterval(nextSlide, 5000);
-}
-
-// Cambiar al siguiente slide
-function nextSlide() {
-  goToSlide((currentSlide + 1) % slides.length);
-}
-
-// Ir a un slide específico
-function goToSlide(n) {
-  // Remover clase active del slide actual
-  slides[currentSlide].classList.remove('active');
-  dots[currentSlide].classList.remove('active');
+function showSlide(n) {
+  // Asegurar que el índice esté dentro del rango
+  if (n >= slides.length) {
+    currentSlide = 0;
+  } else if (n < 0) {
+    currentSlide = slides.length - 1;
+  } else {
+    currentSlide = n;
+  }
   
-  // Actualizar índice
-  currentSlide = n;
+  // Ocultar todas las slides
+  slides.forEach(slide => {
+    slide.classList.remove('active');
+  });
   
-  // Añadir clase active al nuevo slide
+  // Remover clase active de todos los puntos
+  dots.forEach(dot => {
+    dot.classList.remove('active');
+  });
+  
+  // Mostrar la slide actual
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
-  
-  // Reiniciar intervalo
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+function goToSlide(n) {
+  showSlide(n);
+}
+
+// Cambio automático de slides cada 5 segundos
+let slideInterval = setInterval(nextSlide, 5000);
+
+// Pausar el carrusel cuando el usuario interactúa
+const carouselContainer = document.querySelector('.carousel-container');
+carouselContainer.addEventListener('mouseenter', () => {
   clearInterval(slideInterval);
+});
+
+carouselContainer.addEventListener('mouseleave', () => {
   slideInterval = setInterval(nextSlide, 5000);
-}
-
-// Toggle del menú móvil
-function toggleMenu() {
-  const menu = document.getElementById('menu');
-  menu.classList.toggle('active');
-  
-  // Cambiar ícono del botón
-  const menuBtn = document.querySelector('.menu-btn');
-  if (menu.classList.contains('active')) {
-    menuBtn.innerHTML = '✕';
-  } else {
-    menuBtn.innerHTML = '☰';
-  }
-}
-
-// Toggle del dropdown en móvil
-function toggleDropdown(e) {
-  if (window.innerWidth <= 768) {
-    e.preventDefault();
-    const dropdown = e.target.parentElement;
-    dropdown.classList.toggle('active');
-  }
-}
-
-// Efecto de header al hacer scroll
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 100) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-  
-  // Efecto parallax en el fondo
-  const scrolled = window.pageYOffset;
-  const parallaxLayers = document.querySelectorAll('.parallax-layer');
-  
-  parallaxLayers.forEach((layer, index) => {
-    const speed = 0.2 * (index + 1);
-    const yPos = -(scrolled * speed);
-    layer.style.transform = `translateY(${yPos}px)`;
-  });
 });
 
-// Animación de entrada para las tarjetas de características
-function animateCardsOnScroll() {
-  const cards = document.querySelectorAll('.feature-card');
-  const contactSection = document.querySelector('.contact-container');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (entry.target.classList.contains('feature-card')) {
-          entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-          entry.target.style.opacity = '0';
-          entry.target.style.transform = 'translateY(30px)';
-          
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, 100);
-        } else if (entry.target === contactSection) {
-          contactSection.style.animation = 'pulse 2s ease';
-        }
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  cards.forEach(card => observer.observe(card));
-  observer.observe(contactSection);
-}
-
-// Inicializar cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', function() {
-  initCarousel();
-  animateCardsOnScroll();
-  
-  // Cerrar menú al hacer clic en un enlace
-  const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 768) {
-        const menu = document.getElementById('menu');
-        menu.classList.remove('active');
-        document.querySelector('.menu-btn').innerHTML = '☰';
-      }
-    });
-  });
-  
-  // Añadir animación de entrada a elementos
-  const animatedElements = document.querySelectorAll('.carousel-content h1, .carousel-content p, .carousel-btn');
-  animatedElements.forEach((el, index) => {
-    el.style.animationDelay = `${index * 0.2}s`;
+// Cerrar menú al hacer clic en un enlace en dispositivos móviles
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      document.getElementById('menu').classList.remove('show');
+    }
   });
 });
-
-// Añadir estilos CSS para animaciones
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.02);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-`;
-document.head.appendChild(styleSheet);
 </script>
 
 </body>
