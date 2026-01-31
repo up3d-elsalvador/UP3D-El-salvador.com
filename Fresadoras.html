@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escaneras</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* ================= VIDEO INTRO ================= */
+.video-container{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+    transition:opacity 1.5s ease;
+}
+
+.video-container.fade-out{
+    opacity:0;
+    pointer-events:none;
+}
+
+.video-intro{
+    width:100vw;
+    height:100vh;
+    object-fit:contain;
+    background:#000;
+}
+
+@media(min-width:900px){
+    .video-intro{
+        object-fit:cover;
+    }
+}
+
+/* ================= CLICK AUTOPLAY ================= */
+.click-message{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    cursor:pointer;
+    z-index:101;
+}
+
+.click-message.show{
+    display:flex;
+}
+
+.click-message i{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+/* ================= WEB ================= */
+.website-container{
+    min-height:100vh;
+    opacity:0;
+    transform:translateY(20px);
+    transition:1.5s ease;
+    padding:20px;
+}
+
+.website-container.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+header{
+    padding:30px 0;
+    text-align:center;
+    border-bottom:1px solid #333;
+    margin-bottom:50px;
+}
+
+.logo{
+    font-size:3rem;
+    letter-spacing:8px;
+}
+
+.tagline{
+    color:#aaa;
+    letter-spacing:3px;
+}
+
+/* ================= CONTENT ================= */
+.main-content{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+@media(max-width:900px){
+    .main-content{
+        grid-template-columns:1fr;
+    }
+}
+
+.section-title{
+    font-size:2rem;
+    margin-bottom:20px;
+    border-left:4px solid #fff;
+    padding-left:15px;
+}
+
+.section-text{
+    color:#ddd;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+/* ================= GALERÍA ================= */
+.gallery-section{
+    max-width:1200px;
+    margin:80px auto;
+    padding:0 20px;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.gallery-card{
+    background:#111;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    transition:.3s ease;
+}
+
+.gallery-card:hover{
+    transform:translateY(-6px);
+    background:#1a1a1a;
+}
+
+.gallery-card img{
+    width:100%;
+    height:180px;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+.gallery-card p{
+    color:#ddd;
+    letter-spacing:1px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    margin-top:80px;
+    padding:40px 0;
+    text-align:center;
+    border-top:1px solid #333;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO INTRO -->
+<div class="video-container" id="videoContainer">
+    <video class="video-intro" id="introVideo" muted autoplay playsinline preload="auto">
+        <source src="videos/part1.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-wireflow-technology-3237-large.mp4" type="video/mp4">
+    </video>
+
+    <div class="click-message" id="clickMessage">
+        <i class="fas fa-play-circle"></i>
+        <p>Haz clic para iniciar</p>
+    </div>
+</div>
+
+<!-- WEB -->
+<div class="website-container" id="websiteContainer">
+
+<header>
+    <h1 class="logo">Escaneras</h1>
+    <p class="tagline">TECNOLOGÍA Y DISEÑO PARA EL FUTURO</p>
+</header>
+
+<div class="main-content">
+    <div>
+        <h2 class="section-title">Bienvenido</h2>
+        <p class="section-text">
+            Innovamos en tecnología de escaneo dental con precisión, diseño y rendimiento profesional.
+        </p>
+    </div>
+
+    <div>
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-text">
+            Equipos de última generación diseñados para clínicas modernas y laboratorios digitales.
+        </p>
+    </div>
+</div>
+
+<!-- GALERÍA -->
+<section class="gallery-section">
+    <h2 class="section-title">Nuestros Equipos</h2>
+
+    <div class="gallery-grid">
+        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up400.webp"><p>Escaner UP400</p></div>
+        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up560.webp"><p>Escaner UP560</p></div>
+        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up560optical.webp"><p>Escaner UP560 Optical</p></div>
+        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/Escaner_up1000.webp"><p>Escaner UP610</p></div>
+        <div class="gallery-card"><img src="Imagenes/Productos/Escaneres/UP610.webp"><p>UP610</p></div>
+    </div>
+</section>
+
+<footer>
+    © 2026 UP3D El Salvador. Todos los derechos reservados.
+</footer>
+
+</div>
+
+<script>
+const video = document.getElementById("introVideo");
+const container = document.getElementById("videoContainer");
+const web = document.getElementById("websiteContainer");
+const clickMsg = document.getElementById("clickMessage");
+
+const playVideo = ()=>{
+    video.play().then(()=>{
+        clickMsg.classList.remove("show");
+    }).catch(()=>{
+        clickMsg.classList.add("show");
+    });
+};
+
+playVideo();
+
+clickMsg.addEventListener("click", playVideo);
+container.addEventListener("click", ()=> video.paused && playVideo());
+
+video.addEventListener("ended", ()=>{
+    container.classList.add("fade-out");
+    setTimeout(()=> web.classList.add("show"), 800);
+});
+</script>
+
+</body>
+</html>

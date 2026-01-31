@@ -40,6 +40,10 @@ body{
     pointer-events:none;
 }
 
+.video-container.hidden{
+    display:none;
+}
+
 .video-intro{
     width:100vw;
     height:100vh;
@@ -248,23 +252,37 @@ const container = document.getElementById("videoContainer");
 const web = document.getElementById("websiteContainer");
 const clickMsg = document.getElementById("clickMessage");
 
-const playVideo = ()=>{
-    video.play().then(()=>{
-        clickMsg.classList.remove("show");
-    }).catch(()=>{
-        clickMsg.classList.add("show");
+// Verificar si el video ya se mostró anteriormente
+const videoShown = localStorage.getItem("introVideoShown");
+
+if (videoShown === "true") {
+    // Si ya se mostró, ocultar el video y mostrar el contenido directamente
+    container.classList.add("hidden");
+    web.classList.add("show");
+} else {
+    // Si es la primera vez, reproducir el video
+    const playVideo = ()=>{
+        video.play().then(()=>{
+            clickMsg.classList.remove("show");
+        }).catch(()=>{
+            clickMsg.classList.add("show");
+        });
+    };
+
+    playVideo();
+
+    clickMsg.addEventListener("click", playVideo);
+    container.addEventListener("click", ()=> video.paused && playVideo());
+
+    video.addEventListener("ended", ()=>{
+        container.classList.add("fade-out");
+        setTimeout(()=> {
+            web.classList.add("show");
+            // Guardar en localStorage que el video ya se mostró
+            localStorage.setItem("introVideoShown", "true");
+        }, 800);
     });
-};
-
-playVideo();
-
-clickMsg.addEventListener("click", playVideo);
-container.addEventListener("click", ()=> video.paused && playVideo());
-
-video.addEventListener("ended", ()=>{
-    container.classList.add("fade-out");
-    setTimeout(()=> web.classList.add("show"), 800);
-});
+}
 </script>
 
 </body>
