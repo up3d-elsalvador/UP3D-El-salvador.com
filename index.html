@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UP3D El Salvador | Escáneres Digitales, Fresadoras y Software</title>
+<title>UP3D El Salvador | Escáneres Digitales, Fresadoras y Software Dental</title>
 
 <link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +26,7 @@ body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--primary);
+  line-height: 1.6;
 }
 
 /* HEADER */
@@ -37,6 +38,7 @@ header{
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
   z-index:1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 nav{
@@ -63,6 +65,7 @@ nav{
   color:var(--secondary);
   font-weight:500;
   transition:color 0.3s;
+  font-size: 0.95rem;
 }
 
 .nav-links a:hover{
@@ -106,6 +109,7 @@ nav{
   display:none;
   font-size:1.5rem;
   cursor:pointer;
+  color: var(--primary);
 }
 
 /* CARRUSEL AL INICIO */
@@ -138,9 +142,11 @@ nav{
 }
 
 .carousel-slide img {
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 .carousel-overlay {
@@ -156,11 +162,16 @@ nav{
   text-align: center;
   color: white;
   padding: 2rem;
+  border-radius: 15px;
 }
 
 .carousel-content {
   max-width: 800px;
   z-index: 2;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
 }
 
 .carousel-content h1 {
@@ -172,23 +183,27 @@ nav{
 .carousel-content p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .carousel-btn {
   background: white;
   color: var(--primary);
   padding: 0.9rem 2rem;
-  border-radius: 4px;
+  border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
   display: inline-block;
   transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
 }
 
 .carousel-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: var(--accent);
+  color: white;
+  border-color: white;
 }
 
 .carousel-dots {
@@ -208,11 +223,16 @@ nav{
   border-radius: 50%;
   background: rgba(255,255,255,0.5);
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 .carousel-dot.active {
   background: white;
+  transform: scale(1.2);
+}
+
+.carousel-dot:hover {
+  transform: scale(1.2);
 }
 
 .carousel-nav {
@@ -231,10 +251,12 @@ nav{
   cursor: pointer;
   transition: background 0.3s;
   z-index: 10;
+  border: 2px solid rgba(255,255,255,0.3);
 }
 
 .carousel-nav:hover {
   background: rgba(255,255,255,0.3);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-nav.prev {
@@ -254,27 +276,176 @@ nav{
 
 .section-title{
   text-align:center;
-  font-size:1.9rem;
+  font-size:2.2rem;
   margin-bottom:3rem;
+  color: var(--primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 0.5rem auto;
+  border-radius: 2px;
 }
 
 .features-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:2rem;
+  margin-bottom: 4rem;
 }
 
 .feature-card{
   background:white;
-  padding:2rem;
-  border-radius:6px;
+  padding:2.5rem 2rem;
+  border-radius:12px;
   border:1px solid var(--border);
   transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card strong {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.feature-card p {
+  color: var(--secondary);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s;
+}
+
+.feature-link:hover {
+  gap: 0.8rem;
+}
+
+/* NUEVA SECCIÓN DE INFORMACIÓN */
+.info-section {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.info-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.info-card h3 i {
+  color: var(--accent);
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.info-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* SECCIÓN DE VENTAJAS */
+.advantages-section {
+  background: white;
+  padding: 4rem 1.5rem;
+  margin-bottom: 4rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+.advantages-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.advantage-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.advantage-item i {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.advantage-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
 }
 
 /* SECCIÓN DE CONTACTO */
@@ -286,15 +457,27 @@ nav{
 
 .contact-container {
   background: white;
-  border-radius: 10px;
-  padding: 3rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-radius: 15px;
+  padding: 4rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   border: 1px solid var(--border);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
 }
 
 .contact-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
   color: var(--primary);
 }
@@ -303,6 +486,9 @@ nav{
   color: var(--secondary);
   margin-bottom: 2.5rem;
   font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact-info {
@@ -311,6 +497,27 @@ nav{
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.contact-item i {
+  color: var(--accent);
+  font-size: 1.2rem;
 }
 
 .contact-phone {
@@ -329,7 +536,7 @@ nav{
 .whatsapp-btn {
   background: var(--whatsapp);
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
@@ -338,6 +545,7 @@ nav{
   gap: 0.8rem;
   transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  font-size: 1.1rem;
 }
 
 .whatsapp-btn:hover {
@@ -353,12 +561,35 @@ nav{
 /* FOOTER */
 footer{
   text-align:center;
-  padding:2rem;
+  padding:3rem 2rem;
   font-size:.85rem;
-  color:var(--secondary);
+  color: rgba(255,255,255,0.8);
   background: var(--primary);
-  color: white;
   margin-top: 3rem;
+  border-top: 4px solid var(--accent);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
 }
 
 /* RESPONSIVE */
@@ -372,7 +603,7 @@ footer{
     background:white;
     flex-direction:column;
     width:220px;
-    border-radius:8px;
+    border-radius:12px;
     border:1px solid var(--border);
     padding:1rem;
     display:none;
@@ -392,6 +623,12 @@ footer{
   
   .carousel-section {
     height: 70vh;
+  }
+  
+  .carousel-slide img {
+    width: 97%;
+    height: 97%;
+    border-radius: 12px;
   }
   
   .carousel-content h1 {
@@ -417,7 +654,7 @@ footer{
   }
   
   .contact-container {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
   
   .contact-title {
@@ -427,11 +664,27 @@ footer{
   .contact-phone {
     font-size: 1.3rem;
   }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .advantages-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 @media(max-width: 600px) {
   .carousel-section {
     height: 60vh;
+  }
+  
+  .carousel-slide img {
+    border-radius: 10px;
+  }
+  
+  .carousel-content {
+    padding: 1.5rem;
   }
   
   .carousel-content h1 {
@@ -445,6 +698,22 @@ footer{
   .carousel-nav {
     display: none;
   }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 </style>
 </head>
@@ -453,18 +722,19 @@ footer{
 
 <header>
 <nav>
-  <a class="logo" href="#"><img src="Imagenes/Productos/Logo.png"></a>
+  <a class="logo" href="#"><img src="Imagenes/Productos/Logo.png" alt="UP3D El Salvador"></a>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
   <ul class="nav-links" id="menu">
     <li><a href="#inicio">Inicio</a></li>
     <li class="dropdown">
-      <a href="#">Productos</a>
+      <a href="#productos">Productos</a>
       <div class="dropdown-menu">
         <a href="Escaner.html">Escáneres</a>
         <a href="Fresado.html">Fresado</a>
         <a href="Software.html">Software</a>
       </div>
     </li>
+    <li><a href="#info">Información</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
@@ -509,6 +779,9 @@ footer{
       </div>
     </div>
     
+    <!-- Flechas de navegación -->
+    <div class="carousel-nav prev" onclick="prevSlide()">‹</div>
+    <div class="carousel-nav next" onclick="nextSlide()">›</div>
     
     <!-- Indicadores de puntos -->
     <div class="carousel-dots">
@@ -519,21 +792,117 @@ footer{
   </div>
 </section>
 
+<!-- SECCIÓN DE PRODUCTOS -->
 <section class="features" id="productos">
-<h2 class="section-title">Nuestros productos</h2>
+<h2 class="section-title">Nuestros Productos</h2>
 <div class="features-grid">
-  <div class="feature-card"><strong>Escáneres</strong><p>Alta precisión para impresiones digitales</p></div>
-  <div class="feature-card"><strong>Fresado</strong><p>Producción exacta de restauraciones</p></div>
-  <div class="feature-card"><strong>Software</strong><p>Flujos digitales optimizados</p></div>
+  <div class="feature-card">
+    <strong>Escáneres Dentales</strong>
+    <p>Escáneres intraorales de alta precisión para impresiones digitales en 3D con precisión micrométrica</p>
+    <a href="Escaner.html" class="feature-link">Ver modelos →</a>
+  </div>
+  <div class="feature-card">
+    <strong>Fresadoras Dentales</strong>
+    <p>Fresadoras de 5 ejes para producción exacta de restauraciones, prótesis e implantes</p>
+    <a href="Fresado.html" class="feature-link">Ver equipos →</a>
+  </div>
+  <div class="feature-card">
+    <strong>Software Dental</strong>
+    <p>Software CAD/CAM especializado para diseño, planificación y fabricación digital</p>
+    <a href="Software.html" class="feature-link">Ver software →</a>
+  </div>
 </div>
+</section>
+
+<!-- SECCIÓN DE INFORMACIÓN -->
+<section class="info-section" id="info">
+  <h2 class="section-title">Más Información</h2>
+  
+  <div class="info-grid">
+    <div class="info-card">
+      <h3><i class="fas fa-graduation-cap"></i> Capacitación</h3>
+      <p>Ofrecemos capacitación completa para el uso de todos nuestros equipos:</p>
+      <ul>
+        <li>Entrenamiento inicial en instalación</li>
+        <li>Sesiones prácticas con casos reales</li>
+        <li>Soporte técnico continuo</li>
+        <li>Actualizaciones de software</li>
+      </ul>
+    </div>
+    
+    <div class="info-card">
+      <h3><i class="fas fa-headset"></i> Soporte Técnico</h3>
+      <p>Nuestro equipo de soporte está disponible para ayudarte:</p>
+      <ul>
+        <li>Soporte remoto 24/7</li>
+        <li>Mantenimiento preventivo</li>
+        <li>Repuestos originales</li>
+        <li>Garantía extendida disponible</li>
+      </ul>
+    </div>
+    
+    <div class="info-card">
+      <h3><i class="fas fa-handshake"></i> Servicios Adicionales</h3>
+      <p>Más allá de la venta, ofrecemos servicios integrales:</p>
+      <ul>
+        <li>Asesoría en digitalización de consultorios</li>
+        <li>Optimización de flujos de trabajo</li>
+        <li>Financiamiento disponible</li>
+        <li>Demo de equipos en tu clínica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE VENTAJAS -->
+<section class="advantages-section">
+  <div class="advantages-grid">
+    <div class="advantage-item">
+      <i class="fas fa-bolt"></i>
+      <h4>Rápida Implementación</h4>
+      <p>Instalación y puesta en marcha en menos de 48 horas</p>
+    </div>
+    
+    <div class="advantage-item">
+      <i class="fas fa-shield-alt"></i>
+      <h4>Garantía Extendida</h4>
+      <p>Garantías de 2 años en equipos y soporte vitalicio</p>
+    </div>
+    
+    <div class="advantage-item">
+      <i class="fas fa-users"></i>
+      <h4>+50 Clientes Satisfechos</h4>
+      <p>Experiencia comprobada en el mercado salvadoreño</p>
+    </div>
+    
+    <div class="advantage-item">
+      <i class="fas fa-sync-alt"></i>
+      <h4>Actualizaciones Constantes</h4>
+      <p>Mantenemos tu tecnología siempre actualizada</p>
+    </div>
+  </div>
 </section>
 
 <!-- SECCIÓN DE CONTACTO -->
 <section class="contact-section" id="contacto">
   <div class="contact-container">
     <h2 class="contact-title">Contáctanos</h2>
-    <p class="contact-subtitle">Estamos aquí para asesorarte en soluciones digitales para tu consultorio dental</p>
+    <p class="contact-subtitle">Estamos aquí para asesorarte en soluciones digitales para tu consultorio dental. Cotiza, agenda una demostración o resuelve tus dudas.</p>
     
+    <div class="contact-details">
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <span>Tel: +503 7745-1582</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>ventas@up3delsalvador.com</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-clock"></i>
+        <span>Lun-Vie: 8:00 AM - 6:00 PM</span>
+      </div>
+    </div>
     
     <a href="https://wa.me/50377451582?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20productos%20dentales" class="whatsapp-btn" target="_blank">
       <i class="fab fa-whatsapp"></i>
@@ -543,7 +912,17 @@ footer{
 </section>
 
 <footer>
-© 2026 UP3D El Salvador. Todos los derechos reservados.
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#info">Información</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#">Política de Privacidad</a>
+    </div>
+    <p>© 2026 UP3D El Salvador. Todos los derechos reservados.</p>
+    <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Especialistas en tecnología dental digital</p>
+  </div>
 </footer>
 
 <script>
@@ -612,6 +991,24 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     if (window.innerWidth <= 900) {
       document.getElementById('menu').classList.remove('show');
+    }
+  });
+});
+
+// Smooth scroll para enlaces internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    if(targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if(targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: 'smooth'
+      });
     }
   });
 });
