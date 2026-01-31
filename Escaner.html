@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escaneras | Tecnología Avanzada</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escaneras</title>
+<link rel="icon" href="Imagenes/Productos/Logo - SIMBOLO.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 *{
@@ -20,47 +21,66 @@ body{
     overflow-x:hidden;
 }
 
-/* VIDEO INTRO */
+/* ================= VIDEO INTRO ================= */
 .video-container{
     position:fixed;
     inset:0;
-    z-index:100;
+    width:100vw;
+    height:100vh;
     background:#000;
     display:flex;
     justify-content:center;
     align-items:center;
+    z-index:100;
     transition:opacity 1.5s ease;
 }
+
 .video-container.fade-out{
     opacity:0;
     pointer-events:none;
 }
-.video-intro{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+
+.video-container.hidden{
+    display:none;
 }
 
-/* CLICK MESSAGE */
+.video-intro{
+    width:100vw;
+    height:100vh;
+    object-fit:contain;
+    background:#000;
+}
+
+@media(min-width:900px){
+    .video-intro{
+        object-fit:cover;
+    }
+}
+
+/* ================= CLICK AUTOPLAY ================= */
 .click-message{
     position:absolute;
     inset:0;
-    margin:auto;
-    width:fit-content;
-    height:fit-content;
-    text-align:center;
-    background:rgba(0,0,0,.75);
-    padding:25px 40px;
-    border-radius:10px;
-    backdrop-filter:blur(10px);
     display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
     cursor:pointer;
+    z-index:101;
 }
-.click-message.show{display:block;}
-.click-message i{font-size:3rem;margin-bottom:10px;}
-.click-message p{font-size:1.1rem}
 
-/* WEBSITE */
+.click-message.show{
+    display:flex;
+}
+
+.click-message i{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+/* ================= WEB ================= */
 .website-container{
     min-height:100vh;
     opacity:0;
@@ -68,201 +88,301 @@ body{
     transition:1.5s ease;
     padding:20px;
 }
+
 .website-container.show{
     opacity:1;
     transform:translateY(0);
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
+    padding:40px 20px;
     text-align:center;
-    padding:40px 10px;
-    border-bottom:1px solid #222;
+    border-bottom:1px solid #333;
 }
-.logo{
-    font-size:3rem;
-    font-weight:800;
-    letter-spacing:6px;
+
+header img{
+    width:120px;
+    margin-bottom:15px;
 }
+
+.logo-text{
+    font-size:2.5rem;
+    letter-spacing:8px;
+}
+
 .tagline{
-    margin-top:10px;
-    font-size:1rem;
     color:#aaa;
     letter-spacing:3px;
 }
 
-/* MAIN */
-.main-content{
+/* ================= CATÁLOGO ================= */
+.catalogo{
     max-width:1200px;
-    margin:60px auto;
+    margin:100px auto;
+    padding:0 20px;
+}
+
+.catalogo-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
-/* SECTIONS */
-.section-title{
-    font-size:1.9rem;
-    margin-bottom:20px;
-    border-left:4px solid #fff;
-    padding-left:15px;
-}
-.section-text{
-    font-size:1.05rem;
-    color:#ddd;
-    line-height:1.7;
-    margin-bottom:20px;
-}
-
-/* FEATURES */
-.features-list{
-    list-style:none;
-}
-.features-list li{
-    padding:12px 0;
-    border-bottom:1px solid #222;
-    color:#ccc;
-}
-.features-list i{
-    margin-right:10px;
-}
-
-/* SERVICES */
-.services{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-.service-card{
+.product-card{
     background:#111;
+    border-radius:16px;
     padding:25px;
-    border-radius:6px;
-    transition:.3s;
+    cursor:pointer;
+    transition:.35s ease;
 }
-.service-card:hover{
-    transform:translateY(-6px);
+
+.product-card:hover{
+    transform:translateY(-10px) scale(1.02);
     background:#1a1a1a;
 }
-.service-icon{
-    font-size:2.2rem;
-    margin-bottom:15px;
+
+.product-card img{
+    width:100%;
+    height:190px;
+    object-fit:contain;
+    margin-bottom:20px;
 }
-.service-title{
-    font-size:1.25rem;
+
+.product-card h3{
     margin-bottom:10px;
 }
-.service-desc{
+
+.product-card p{
     color:#bbb;
-    line-height:1.6;
+    font-size:.9rem;
 }
 
-/* IMAGES SECTION */
-.gallery{
-    margin-top:80px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-.gallery img{
-    width:100%;
-    border-radius:6px;
-    object-fit:cover;
-}
-
-/* FOOTER */
-footer{
-    margin-top:100px;
-    padding:40px 10px;
-    text-align:center;
-    border-top:1px solid #222;
-    color:#777;
-}
-.footer-links{
-    margin-top:20px;
-    display:flex;
+/* ================= MODAL PRODUCTO ================= */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(10px);
+    display:none;
     justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
+    align-items:center;
+    z-index:200;
 }
-.footer-links a{
-    color:#aaa;
-    text-decoration:none;
-}
-.footer-links a:hover{color:#fff}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-    .main-content{grid-template-columns:1fr}
-    .services{grid-template-columns:1fr}
-    .gallery{grid-template-columns:1fr 1fr}
+.modal.show{
+    display:flex;
 }
-@media(max-width:600px){
-    .logo{font-size:2.1rem}
-    .section-title{font-size:1.5rem}
-    .gallery{grid-template-columns:1fr}
+
+.modal-content{
+    background:#111;
+    width:90%;
+    max-width:900px;
+    border-radius:25px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    animation:zoomIn .6s ease;
+}
+
+@keyframes zoomIn{
+    from{transform:scale(.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.modal-content img{
+    width:100%;
+    object-fit:contain;
+}
+
+.modal-content h2{
+    margin-bottom:15px;
+}
+
+.modal-content p{
+    color:#ccc;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.buy-btn{
+    display:inline-block;
+    padding:14px 30px;
+    border:1px solid #fff;
+    color:#fff;
+    text-decoration:none;
+    letter-spacing:2px;
+    transition:.3s ease;
+}
+
+.buy-btn:hover{
+    background:#fff;
+    color:#000;
+}
+
+.close{
+    position:absolute;
+    top:25px;
+    right:30px;
+    font-size:1.8rem;
+    cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    margin-top:120px;
+    padding:40px;
+    text-align:center;
+    border-top:1px solid #333;
+    color:#888;
+}
+
+@media(max-width:800px){
+    .modal-content{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- VIDEO INTRO -->
 <div class="video-container" id="videoContainer">
-    <video class="video-intro" id="introVideo" muted autoplay playsinline>
+    <video class="video-intro" id="introVideo" muted autoplay playsinline preload="auto">
         <source src="videos/part1.mp4" type="video/mp4">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-wireflow-technology-3237-large.mp4" type="video/mp4">
     </video>
+
     <div class="click-message" id="clickMessage">
         <i class="fas fa-play-circle"></i>
         <p>Haz clic para iniciar</p>
     </div>
 </div>
 
+<!-- WEB -->
 <div class="website-container" id="websiteContainer">
 
 <header>
-    <h1 class="logo">Escaneras</h1>
-    <p class="tagline">TECNOLOGÍA • PRECISIÓN • FUTURO</p>
+    <img src="Imagenes/Productos/Logo.png" alt="Escaneras Logo">
+    <div class="logo-text">ESCANERAS</div>
+    <p class="tagline">TECNOLOGÍA DE ESCANEO DENTAL PROFESIONAL</p>
 </header>
 
-<section class="main-content">
+<section class="catalogo">
+    <h2 class="logo-text" style="text-align:center;margin-bottom:60px;">CATÁLOGO</h2>
 
-<section class="introduction">
-    <h2 class="section-title">Escaneres Digitales de Alta Precisión</h2>
-    <p class="section-text">Descubre nuestra gama de escaneres digitales diseñados para ofrecer la máxima precisión y eficiencia en cada escaneo. Ideales para profesionales que buscan calidad y rapidez en sus procesos.</p>
+    <div class="catalogo-grid">
 
-</section>
+        <div class="product-card" onclick="openProduct(
+            'UP400',
+            'Imagenes/Productos/Escaneres/Escaner_up400.webp',
+            'Escáner compacto ideal para clínicas odontológicas. Alta precisión, rapidez y facilidad de uso.'
+        )">
+            <img src="Imagenes/Productos/Escaneres/Escaner_up400.webp">
+            <h3>UP400</h3>
+            <p>Escáner clínico compacto</p>
+        </div>
 
-<section class="gallery">
-    <img src="Imagenes/Productos/Escaneres/Escaner_up1000.webp">
-    <img src="Imagenes/Productos/Escaneres/Escaner_up400.webp">
-    <img src="Imagenes/Productos/Escaneres/Escaner_up560.webp">
-    <img src="Imagenes/Productos/Escaneres/Escaner_up560optical.webp">
- 
+        <div class="product-card" onclick="openProduct(
+            'UP560',
+            'Imagenes/Productos/Escaneres/Escaner_up560.webp',
+            'Diseñado para laboratorios digitales con alto volumen de trabajo y máxima estabilidad.'
+        )">
+            <img src="Imagenes/Productos/Escaneres/Escaner_up560.webp">
+            <h3>UP560</h3>
+            <p>Escáner de laboratorio</p>
+        </div>
+
+        <div class="product-card" onclick="openProduct(
+            'UP560 Optical',
+            'Imagenes/Productos/Escaneres/Escaner_up560optical.webp',
+            'Escaneo óptico avanzado con fidelidad extrema y resultados profesionales.'
+        )">
+            <img src="Imagenes/Productos/Escaneres/Escaner_up560optical.webp">
+            <h3>UP560 Optical</h3>
+            <p>Precisión óptica avanzada</p>
+        </div>
+
+        <div class="product-card" onclick="openProduct(
+            'UP610 Pro',
+            'Imagenes/Productos/Escaneres/UP610.webp',
+            'Solución premium para flujos CAD/CAM exigentes, máxima precisión industrial.'
+        )">
+            <img src="Imagenes/Productos/Escaneres/UP610.webp">
+            <h3>UP610 Pro</h3>
+            <p>Escáner premium</p>
+        </div>
+
+    </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 Escaneras</p>
-    <div class="footer-links">
-        <a href="#">Contacto</a>
-        <a href="#">Privacidad</a>
-        <a href="#">Equipo</a>
-        <a href="#">Blog</a>
-    </div>
+    © 2026 Escaneras · UP3D El Salvador
 </footer>
-      
 
 </div>
 
-<script>
-const videoContainer=document.getElementById("videoContainer");
-const websiteContainer=document.getElementById("websiteContainer");
-const introVideo=document.getElementById("introVideo");
-const clickMessage=document.getElementById("clickMessage");
+<!-- MODAL -->
+<div class="modal" id="productModal">
+    <div class="close" onclick="closeProduct()">✕</div>
+    <div class="modal-content">
+        <img id="modalImg">
+        <div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <a id="buyBtn" class="buy-btn" target="_blank">
+                MÁS INFORMACIÓN VÍA WHATSAPP
+            </a>
+        </div>
+    </div>
+</div>
 
-const playVideo=()=>{introVideo.play().catch(()=>clickMessage.classList.add("show"));};
-playVideo();
-clickMessage.onclick=playVideo;
-introVideo.onended=()=>{videoContainer.classList.add("fade-out");setTimeout(()=>websiteContainer.classList.add("show"),800);}
+<script>
+const video = document.getElementById("introVideo");
+const container = document.getElementById("videoContainer");
+const web = document.getElementById("websiteContainer");
+const clickMsg = document.getElementById("clickMessage");
+
+const videoShown = localStorage.getItem("introVideoShown");
+
+if (videoShown === "true") {
+    container.classList.add("hidden");
+    web.classList.add("show");
+} else {
+    const playVideo = ()=>{
+        video.play().then(()=>{
+            clickMsg.classList.remove("show");
+        }).catch(()=>{
+            clickMsg.classList.add("show");
+        });
+    };
+
+    playVideo();
+    clickMsg.addEventListener("click", playVideo);
+
+    video.addEventListener("ended", ()=>{
+        container.classList.add("fade-out");
+        setTimeout(()=>{
+            web.classList.add("show");
+            localStorage.setItem("introVideoShown","true");
+        },800);
+    });
+}
+
+function openProduct(title,img,desc){
+    modalTitle.innerText = title;
+    modalImg.src = img;
+    modalDesc.innerText = desc;
+    buyBtn.href = `https://wa.me/+50377451582?text=${encodeURIComponent(
+        'Hola, estoy interesado en el escáner '+title
+    )}`;
+    productModal.classList.add("show");
+}
+
+function closeProduct(){
+    productModal.classList.remove("show");
+}
 </script>
 
 </body>
